@@ -3,3 +3,4 @@
 probe
 .build/
 *.zip
+dist/

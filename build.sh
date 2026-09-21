@@ -9,7 +9,7 @@ for size in 16 32 128 256 512; do
     sips -z "$doubled" "$doubled" Assets/AppIcon.png --out ".build/AppIcon.iconset/icon_${size}x${size}@2x.png" >/dev/null
 done
 iconutil -c icns .build/AppIcon.iconset -o "$APP/Contents/Resources/AppIcon.icns"
-xcrun swiftc -O -parse-as-library SensorCatalog.swift Sensors.swift App.swift -o "$APP/Contents/MacOS/MacTemps" -framework SwiftUI -framework AppKit -framework IOKit
+xcrun swiftc -target arm64-apple-macos14.0 -O -parse-as-library SensorCatalog.swift Sensors.swift App.swift -o "$APP/Contents/MacOS/MacTemps" -framework SwiftUI -framework AppKit -framework IOKit
 cat > "$APP/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -19,7 +19,8 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
 <key>CFBundleIconFile</key><string>AppIcon</string>
 <key>CFBundleName</key><string>Mac Temps</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleShortVersionString</key><string>1.0</string>
+<key>CFBundleShortVersionString</key><string>1.0.0</string>
+<key>CFBundleVersion</key><string>1</string>
 <key>LSMinimumSystemVersion</key><string>14.0</string>
 <key>NSHighResolutionCapable</key><true/>
 </dict></plist>

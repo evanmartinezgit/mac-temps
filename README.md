@@ -11,6 +11,27 @@ A small native macOS app for viewing live hardware temperature channels. Built w
 - CSV export of readings and mapping status
 - Honest labels for community-mapped, tentative, disputed, and unknown channels
 
+## Download and install
+
+**[Download Mac Temps installer (Apple Silicon)](https://github.com/evanmartinezgit/mac-temps/releases/latest/download/Mac-Temps-Apple-Silicon.pkg)**
+
+1. Open the downloaded `.pkg` and follow the macOS Installer steps.
+2. Open **Mac Temps** from Applications.
+
+No compiler or Terminal is needed. Requires an Apple Silicon Mac running macOS 14 or later. Tested on M1 Max; named sensor mappings currently target MacBookPro18,2.
+
+**Signing:** this first release is not Developer ID signed or notarized. macOS may block the installer or app. If you trust this download, use the per-app **Open Anyway** option in **System Settings → Privacy & Security**, following [Apple's instructions](https://support.apple.com/102445). Managed Macs may prohibit this. A warning-free release requires Developer ID signing and Apple notarization.
+
+The installer puts the app in `/Applications` and may request your administrator password for installation. Reading temperatures does not require an administrator password. Quit Mac Temps before upgrading. To uninstall, move Mac Temps from Applications to Trash.
+
+## Build the installer
+
+```sh
+./package.sh
+```
+
+Creates the installer and its SHA-256 checksum in `dist/`. Packaging adds no background services, privileged helpers, or installation scripts.
+
 ## Build and run
 
 Requires macOS 14 or later and Apple's Xcode Command Line Tools (`xcode-select --install`). Tested on a 16-inch M1 Max MacBook Pro, model `MacBookPro18,2`. The sensor-name catalog is scoped to that model; other Macs retain unknown names and may expose different or unsupported channels.
